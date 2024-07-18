@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}上传文章 - Dyna's Blog{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>上传文章</h1>
+    <form action="{{ url_for('upload_post') }}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">文章标题:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="category">选择分类:</label>
+            <select id="category" name="category" required>
+                <option value="编程闲聊">编程闲聊</option>
+                <option value="网络新闻不掉线">网络新闻不掉线</option>
+                <option value="Dyna X软件Wiki">Dyna X软件Wiki</option>
+                <option value="NOIP (￣︶￣)↗[GO!GO!GO!]">NOIP (￣︶￣)↗[GO!GO!GO!]</option>
+                <!-- 根据需要添加更多分类 -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="secret_key">输入密钥:</label>
+            <input type="text" id="secret_key" name="secret_key" required>
+        </div>
+        <div class="form-group">
+            <label for="file">上传 HTML 文件:</label>
+            <input type="file" id="file" name="file" accept=".html" required>
+        </div>
+        <button type="submit" class="button">上传</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block custom_css %}
+<style>
+    .upload-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-group textarea {
+        height: 200px;
+    }
+
+    .form-group button {
+        padding: 10px 20px;
+        background: #005f4e;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .form-group button:hover {
+        background: #004228;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}主页 - 我的博客{% endblock %}
+
+{% block content %}
+<div class="intro">
+    <h1>欢迎来到我的博客</h1>
+    <p>点击下方空白处查看社会主义核心价值观</p>
+    <div id="core-values" style="display: none;">
+        <p>富强、民主、文明、和谐</p>
+        <p>自由、平等、公正、法治</p>
+        <p>爱国、敬业、诚信、友善</p>
+    </div>
+    <button onclick="showCoreValues()">点击这里</button>
+    <div class="info">
+        <p>作者邮箱: <a href="mailto:3183044388@qq.com">3183044388@qq.com</a></p>
+        <p>GitHub: <a href="https://gitee.com/Kuromi_LU">Kuromi_LU</a></p>
+        <p>QQ: 3183044388</p>
+        <p>微信: Takadyna7112</p>
+    </div>
+</div>
+
+<ul class="post-list">
+    {% for post in posts %}
+        <li>
+            <h2 class="post-title">
+                <a href="{{ url_for('post', post_name=post.filename) }}">{{ post.title }}</a>
+            </h2>
+            <p class="post-summary">{{ post.summary }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+<script>
+    function showCoreValues() {
+        var coreValues = document.getElementById('core-values');
+        coreValues.style.display = coreValues.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+
+
+{% endblock %}
+
+{% block custom_css %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        padding: 0 20px;
+        position: relative;
+    }
+    .intro {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .intro h1 {
+        margin-bottom: 10px;
+    }
+    .post-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    .post-list li {
+        margin-bottom: 20px;
+    }
+    .post-title {
+        font-size: 24px;
+    }
+    .post-summary {
+        font-size: 16px;
+        color: #555;
+    }
+</style>
+{% endblock %}

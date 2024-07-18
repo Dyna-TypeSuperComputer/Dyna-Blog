@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category_name }}Dyna's Blog{% endblock %}
+
+{% block content %}
+<div class="category-container">
+    <h1>{{ category_name }}分类</h1>
+    {% if posts %}
+        <ul class="post-list">
+            {% for post in posts %}
+                <li class="post">
+                    <div class="post-box">
+                        <a href="{{ url_for('post', category=category_name, post_name=post.filename) }}">{{ post.filename }}</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>此分类下暂无文章。</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}Dyna's Blog{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <!-- <header class="post-header">
+            <h1 class="post-title">{{ title }}</h1>
+        </header> -->
+        <section class="post-content">
+            <!-- 假设 content 是安全的 HTML 内容 -->
+            {{ content | safe }}
+        </section>
+    </article>
+
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/style.css">
+{% endblock %}

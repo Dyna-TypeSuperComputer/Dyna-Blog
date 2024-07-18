@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='web.ico') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' else '' }}">主页</a>
+                    <a href="{{ url_for('category', category_name='编程闲聊') }}" class="{{ 'active' if request.endpoint == 'category' and category == '编程闲聊' else '' }}">编程闲聊</a>
+                    <a href="{{ url_for('category', category_name='网络新闻不掉线') }}" class="{{ 'active' if request.endpoint == 'category' and category == '网络新闻不掉线' else '' }}">网络新闻不掉线</a>
+                    <a href="{{ url_for('category', category_name='Dyna X软件Wiki') }}" class="{{ 'active' if request.endpoint == 'category' and category == 'Dyna X软件Wiki' else '' }}">Dyna X软件Wiki</a>
+                    <a href="{{ url_for('category', category_name='NOIP (￣︶￣)↗[GO!GO!GO!]') }}" class="{{ 'active' if request.endpoint == 'category' and category == 'OIP (￣︶￣)↗[GO!GO!GO!]N' else '' }}">NOIP [GO!GO!GO!]</a>
+                </li>
+                <li><a href="{{ url_for('upload_post') }}">+</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="fireworks"></div>
+
+    <script>
+        function createParticle(event, color) {
+            var particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.left = event.clientX + 'px';
+            particle.style.top = event.clientY + 'px';
+            particle.style.width = '10px';
+            particle.style.height = '10px';
+            particle.style.backgroundColor = color;
+            particle.style.borderRadius = '50%';
+            particle.style.opacity = 0.8;
+            particle.style.backgroundColor = '#00BFFF';
+            particle.style.zIndex = 1;
+            document.body.appendChild(particle);
+
+            var duration = Math.random() * 300 + 200;
+            var size = Math.random() * 5 + 5;
+            var delay = Math.random() * 100;
+
+            setTimeout(function() {
+                particle.style.transition = 'opacity ' + duration + 'ms ease, transform ' + duration + 'ms ease';
+                particle.style.opacity = 0;
+                particle.style.transform = 'translate(' + (Math.random() * 50 - 25) + 'px, ' + (Math.random() * 50 - 25) + 'px) scale(' + size + ')';
+            }, delay);
+
+            setTimeout(function() {
+                particle.remove();
+            }, duration + delay);
+        }
+
+        document.addEventListener('click', function(event) {
+            createParticle(event, 'rgba(255, 255, 255, 1)');
+        });
+    </script>
+</body>
+</html>
